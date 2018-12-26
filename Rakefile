@@ -45,16 +45,14 @@ namespace :db do
     require 'sequel'
     require_relative  'config/environment.rb'
     require_relative  'spec/helpers/database_helper.rb'
-    def app
-      YouTubeTrendingMap::App
-    end
+    @api = YouTubeTrendingMap::Api
   end
 
   desc 'Run migrations'
   task migrate: :config do
     Sequel.extension :migration
-    puts "Migrating #{app.environment} database to latest"
-    Sequel::Migrator.run(app.DB, 'app/infrastructure/database/migrations')
+    puts "Migrating #{@api.environment} database to latest"
+    Sequel::Migrator.run(@api.DB, 'app/infrastructure/database/migrations')
   end
 
   desc 'Wipe records from all tables'
@@ -65,13 +63,13 @@ namespace :db do
 
   desc 'Delete dev or test database file'
   task drop: :config do
-    if app.environment == :production
+    if @api.environment == :production
       puts 'Cannot remove production database'
       return
     end
 
-    FileUtils.rm(YouTubeTrendingMap::App.config.DB_FILENAME)
-    puts "Deleted #{YouTubeTrendingMap::App.config.DB_FILENAME}"
+    FileUtils.rm(YouTubeTrendingMap::Api.config.DB_FILENAME)
+    puts "Deleted #{YouTubeTrendingMap::Api.config.DB_FILENAME}"
   end
 end
 
@@ -90,7 +88,7 @@ namespace :vcr do
 end
 
 namespace :quality do
-  CODE = 'app/'
+  CODE = 'app'
 
   desc 'run all quality checks'
   task all: %i[rubocop flog reek]
