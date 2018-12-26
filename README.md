@@ -1,5 +1,6 @@
 # YouTube Trending Map
 
+[ ![Codeship Status for Thoar-tw/YouTube-TrendingMap-API](https://app.codeship.com/projects/42410180-eb20-0136-4343-567225019dfc/status?branch=master)](https://app.codeship.com/projects/319812)
 ## Overview
 We aim to create a web service that shows YouTube trending videos from various **countries**, **continents**, toward **global**.
 
