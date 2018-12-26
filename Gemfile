@@ -4,7 +4,8 @@ source 'https://rubygems.org'
 ruby '2.5.3'
 
 # PRESENTATION LAYER
-gem 'slim', '~> 4.0'
+gem 'multi_json'
+gem 'roar'
 
 # APPLICATION LAYER
 # Web application
@@ -51,6 +52,8 @@ group :test do
   gem 'webmock', '~> 3.4'
   gem 'watir', '~> 6.15'
 end
+
+gem 'rack-test' # can also be used to diagnose production
 
 # QUALITY
 group :development, :test do
