@@ -46,7 +46,7 @@ describe 'Tests Youtube API library' do
     it 'HAPPY: should provide a list of videos, and each video has non nil Video attributes' do
       list =  YouTubeTrendingMap::Mapper::HotVideosList
               .new(GOOGLE_CLOUD_KEY)
-              .get(COUNTRY_CODE, DEFAULT_CATEGORY, DEFAULT_MAX_RESULTS)
+              .get(REGION_CODE, DEFAULT_CATEGORY, DEFAULT_MAX_RESULTS)
       list.videos.each do |video|
         _(video.origin_id).wont_be_nil
         _(video.publish_time).wont_be_nil
@@ -64,7 +64,7 @@ describe 'Tests Youtube API library' do
       time_regex = /(\d\d\d\d)-(\d\d)-(\d\d)T(\d\d):(\d\d):(\d\d).000Z/
       list =  YouTubeTrendingMap::Mapper::HotVideosList
               .new(GOOGLE_CLOUD_KEY)
-              .get(COUNTRY_CODE, DEFAULT_CATEGORY, DEFAULT_MAX_RESULTS)
+              .get(REGION_CODE, DEFAULT_CATEGORY, DEFAULT_MAX_RESULTS)
       list.videos.each do |video|
         _(video.publish_time).must_match(time_regex)
       end
@@ -74,7 +74,7 @@ describe 'Tests Youtube API library' do
       link_regex = %r{https\:\/\/www\.youtube\.com\/embed\/(.*?)}
       list =  YouTubeTrendingMap::Mapper::HotVideosList
               .new(GOOGLE_CLOUD_KEY)
-              .get(COUNTRY_CODE, DEFAULT_CATEGORY, DEFAULT_MAX_RESULTS)
+              .get(REGION_CODE, DEFAULT_CATEGORY, DEFAULT_MAX_RESULTS)
       list.videos.each do |video|
         _(video.embed_link).must_match(link_regex)
       end
@@ -84,7 +84,7 @@ describe 'Tests Youtube API library' do
       proc do
         YouTubeTrendingMap::Mapper::HotVideosList
           .new('INVALID_KEY')
-          .get(COUNTRY_CODE, DEFAULT_CATEGORY, DEFAULT_MAX_RESULTS)
+          .get(REGION_CODE, DEFAULT_CATEGORY, DEFAULT_MAX_RESULTS)
       end.must_raise YouTubeTrendingMap::YoutubeAPI::Errors::BadRequest
     end
   end

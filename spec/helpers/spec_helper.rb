@@ -15,7 +15,7 @@ require 'pry' # for debugging
 require_relative '../../init.rb'
 
 COUNTRY_NAME = 'Taiwan'.freeze
-COUNTRY_CODE = 'tw'.freeze
+REGION_CODE = 'tw'.freeze
 DEFAULT_CATEGORY = 0
 DEFAULT_MAX_RESULTS = 10
 

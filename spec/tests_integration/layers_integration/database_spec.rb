@@ -24,7 +24,7 @@ describe 'Integration Tests of Github API and Database' do
     it 'HAPPY: should be able to save remote hot videos list data to database' do
       list =  YouTubeTrendingMap::Mapper::HotVideosList
               .new(GOOGLE_CLOUD_KEY)
-              .get(COUNTRY_CODE, DEFAULT_CATEGORY, DEFAULT_MAX_RESULTS)
+              .get(REGION_CODE, DEFAULT_CATEGORY, DEFAULT_MAX_RESULTS)
 
       rebuilt = YouTubeTrendingMap::Repository::For.entity(list).create(list)
 
