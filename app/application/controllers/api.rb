@@ -1,8 +1,6 @@
 # frozen_string_literal: false
 
 require 'roda'
-require 'slim'
-require 'slim/include'
 
 module YouTubeTrendingMap
   # Web app

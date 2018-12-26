@@ -6,7 +6,7 @@ require_relative '../helpers/database_helper.rb'
 require 'rack/test'
 
 def app
-  CodePraise::Api
+  YouTubeTrendingMap::Api
 end
 
 describe 'Test API routes' do
@@ -16,7 +16,7 @@ describe 'Test API routes' do
   DatabaseHelper.setup_database_cleaner
 
   before do
-    VcrHelper.configure_vcr_for_github
+    VcrHelper.configure_vcr_for_youtube
     DatabaseHelper.wipe_database
   end
 
@@ -35,23 +35,23 @@ describe 'Test API routes' do
     end
   end
 
-  describe 'Appraise project folder route' do
-    it 'should be able to appraise a project folder' do
-      CodePraise::Service::AddProject.new.call(
-        owner_name: USERNAME, project_name: PROJECT_NAME
+  describe 'Get hot videos list route' do
+    it 'should be able to get a list of hot videos' do
+      YouTubeTrendingMap::Service::GetHotVideosList.new.call(
+        region_code: REGION_CODE, category_id: DEFAULT_CATEGORY
       )
 
-      get "/api/v1/projects/#{USERNAME}/#{PROJECT_NAME}"
+      get "/api/v1/hot_videos/#{REGION_CODE}/#{DEFAULT_CATEGORY}"
       _(last_response.status).must_equal 200
-      appraisal = JSON.parse last_response.body
-      _(appraisal.keys.sort).must_equal %w[folder project]
-      _(appraisal['project']['name']).must_equal PROJECT_NAME
-      _(appraisal['project']['owner']['username']).must_equal USERNAME
-      _(appraisal['project']['contributors'].count).must_equal 3
-      _(appraisal['folder']['path']).must_equal ''
-      _(appraisal['folder']['subfolders'].count).must_equal 10
-      _(appraisal['folder']['line_count']).must_equal 1441
-      _(appraisal['folder']['base_files'].count).must_equal 2
+      result = JSON.parse last_response.body
+      _(result.keys.sort).must_equal %w[folder project]
+      _(result['project']['name']).must_equal PROJECT_NAME
+      _(result['project']['owner']['username']).must_equal USERNAME
+      _(result['project']['contributors'].count).must_equal 3
+      _(result['folder']['path']).must_equal ''
+      _(result['folder']['subfolders'].count).must_equal 10
+      _(result['folder']['line_count']).must_equal 1441
+      _(result['folder']['base_files'].count).must_equal 2
     end
 
     it 'should be able to appraise a project subfolder' do
