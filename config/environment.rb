@@ -7,7 +7,7 @@ require 'json'
 
 module YouTubeTrendingMap
   # Configuration for the App
-  class App < Roda
+  class Api < Roda
     plugin :environments
 
     extend Econfig::Shortcut

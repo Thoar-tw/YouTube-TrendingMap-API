@@ -36,7 +36,7 @@ namespace :run do
   end
 
   task :test do
-    sh 'RACK_ENV=test rackup -p 9000'
+    sh 'RACK_ENV=test rackup -p 9090'
   end
 end
 
@@ -68,8 +68,8 @@ namespace :db do
       return
     end
 
-    FileUtils.rm(YouTubeTrendingMap::Api.config.DB_FILENAME)
-    puts "Deleted #{YouTubeTrendingMap::Api.config.DB_FILENAME}"
+    FileUtils.rm(@api.config.DB_FILENAME)
+    puts "Deleted #{@api.config.DB_FILENAME}"
   end
 end
 
