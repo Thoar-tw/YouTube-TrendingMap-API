@@ -7,7 +7,7 @@ require 'json'
 module YouTubeTrendingMap
   module Value
     # List request parser
-    class VideosListRequest
+    class ListRequest
       include Dry::Monads::Result::Mixin
 
       def initialize(params)
@@ -20,7 +20,7 @@ module YouTubeTrendingMap
         Success(list)
       rescue StandardError
         Failure(Value::Result.new(status: :bad_request,
-                                  message: 'Top videos list not found'))
+                                  message: 'Videos list not found'))
       end
 
       # Use in client App to create params to send
