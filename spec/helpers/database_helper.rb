@@ -11,8 +11,8 @@ class DatabaseHelper
   end
 
   def self.wipe_database
-    YouTubeTrendingMap::App.DB.run('PRAGMA foreign_keys = OFF')
+    YouTubeTrendingMap::Api.DB.run('PRAGMA foreign_keys = OFF')
     DatabaseCleaner.clean
-    YouTubeTrendingMap::App.DB.run('PRAGMA foreign_keys = ON')
+    YouTubeTrendingMap::Api.DB.run('PRAGMA foreign_keys = ON')
   end
 end
