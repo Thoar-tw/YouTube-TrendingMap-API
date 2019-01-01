@@ -12,7 +12,6 @@ module YouTubeTrendingMap
 
       def delete_video(input)
         puts 'inside delete_video'
-        puts input[:origin_id]
         result =
           FavoriteVideosRepository::FavoriteVideos
           .delete_video(input[:origin_id])

@@ -15,22 +15,22 @@ module YouTubeTrendingMap
             videos << video
           end
         end
-        puts ">> in aggregator"
-        videos.each do |video|
-          puts video.origin_id
-        end
+        # puts ">> in aggregator"
+        # videos.each do |video|
+        #   puts video.origin_id
+        # end
 
         videos = remove_duplicates(videos)
-        puts ">> after removing duplicates"
-        videos.each do |video|
-          puts video.origin_id
-        end
+        # puts ">> after removing duplicates"
+        # videos.each do |video|
+        #   puts video.origin_id
+        # end
 
         videos = sort_by_view_counts(videos)
-        puts ">> after sorting"
-        videos.each do |video|
-          puts video.origin_id
-        end
+        # puts ">> after sorting"
+        # videos.each do |video|
+        #   puts video.origin_id
+        # end
 
         videos
       end

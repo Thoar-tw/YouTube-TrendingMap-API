@@ -12,7 +12,7 @@ module YouTubeTrendingMap
       private
 
       def validate_input(input)
-        puts 'inside validate_input'
+        # puts 'inside validate_input'
         region_code = input[:region_code]
         category_id = input[:category_id]
 
@@ -20,7 +20,7 @@ module YouTubeTrendingMap
       end
 
       def get_from_api(input)
-        puts 'inside get_from_api'
+        # puts 'inside get_from_api'
         hot_videos_list = YouTubeTrendingMap::Mapper::HotVideosList
                           .new(Api.config.GOOGLE_CLOUD_KEY)
                           .get(input[:region_code], input[:category_id], 10)
