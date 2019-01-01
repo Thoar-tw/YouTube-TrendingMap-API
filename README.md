@@ -27,7 +27,7 @@ Status
 
 ### Get a list of YouTube top viewed videos in the global world
 
-`GET /top_videos/global/{category_id}`
+`POST /top_videos/global/{category_id}`
 
 Status
 
@@ -37,7 +37,7 @@ Status
 
 ### Get a list of YouTube top viewed videos within a continent
 
-`GET /top_videos/continent/{continent_name}/{category_id}`
+`POST /top_videos/continent/{continent_name}/{category_id}`
 
 Status
 
@@ -47,7 +47,7 @@ Status
 
 ### Get a list of YouTube top viewed videos in a country(with it's region code)
 
-`GET /top_videos/continent/{region_code}/{category_id}`
+`POST /top_videos/continent/{region_code}/{category_id}`
 
 Status
 
