@@ -24,15 +24,16 @@ class VcrHelper
     )
   end
 
-  def self.configure_vcr_for_youtube
+  def self.configure_vcr_for_youtube(recording: :new_episodes)
     VCR.configure do |c|
       c.filter_sensitive_data('<GOOGLE_CLOUD_KEY>') { GOOGLE_CLOUD_KEY }
     end
 
     VCR.insert_cassette(
       YOUTUBE_CASSETTE,
-      record: :new_episodes,
-      match_requests_on: %i[method uri headers]
+      record: recording,
+      match_requests_on: %i[method uri headers],
+      allow_playback_repeats: true
     )
   end
 

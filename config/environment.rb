@@ -29,6 +29,12 @@ module YouTubeTrendingMap
       ENV['DATABASE_URL'] = 'sqlite://' + config.DB_FILENAME
     end
 
+    configure :test do
+      require_relative '../spec/helpers/vcr_helper.rb'
+      VcrHelper.setup_vcr
+      VcrHelper.configure_vcr_for_youtube(recording: :none)
+    end
+
     configure :production do
       # Use deployment platform's DATABASE_URL environment variable
     end

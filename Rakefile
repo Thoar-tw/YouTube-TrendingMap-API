@@ -15,8 +15,7 @@ end
 desc 'Run acceptance tests'
 Rake::TestTask.new(:spec_accept) do |t|
   puts 'NOTE: run `rake run:test` in another process'
-  t.pattern = 'spec/tests_acceptance/hot_videos_page_acceptance.rb'
-  # t.pattern = 'spec/tests_acceptance/*_acceptance.rb'
+  t.pattern = 'spec/tests_acceptance/*.rb'
   t.warning = false
 end
 
