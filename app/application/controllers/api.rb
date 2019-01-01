@@ -32,7 +32,6 @@ module YouTubeTrendingMap
           routing.on String, String do |region_code, category_id|
             # POST /hot_videos/{region_code}/{category_id}
             routing.post do
-              puts 'post'
               result = Services::GetHotVideosList.new.call(
                 region_code: region_code, category_id: category_id
               )
@@ -93,7 +92,7 @@ module YouTubeTrendingMap
 
           routing.on 'country' do
             routing.on String, String do |region_code, category_id|
-              # POST /top_videos/{region_code}/{category_id}
+              # POST /top_videos/country/{region_code}/{category_id}
               routing.post do
                 result = Services::GetCountryTopVideosList.new.call(
                   region_code: region_code, category_id: category_id
@@ -114,8 +113,9 @@ module YouTubeTrendingMap
           end
         end
 
-        routing.on 'favorite_videos' do
+        routing.on 'favorite_videos' do # rubocop:disable Metrics/BlockLength
           routing.is do
+            # GET /favorite_videos
             routing.get do
               result = Services::ListFavoriteVideos.new.call(
                 list_request: Value::ListRequest.new(routing.params)
@@ -135,6 +135,7 @@ module YouTubeTrendingMap
             end
           end
           routing.on 'add' do
+            # POST /favorite_videos/add
             routing.post do
               result = Services::AddFavoriteVideo.new.call(
                 origin_id: routing.params['origin_id'],
@@ -153,6 +154,7 @@ module YouTubeTrendingMap
             end
           end
           routing.on 'delete' do
+            # POST /favorite_videos/delete
             routing.post do
               result = Services::DeleteFavoriteVideo.new.call(
                 origin_id: routing.params['origin_id']
