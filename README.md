@@ -17,7 +17,7 @@ Status:
 
 ### Get a list of YouTube hot videos in a country(with it's region code)
 
-`GET /hot_videos/{region_code}/{category_id}`
+`POST /hot_videos/{region_code}/{category_id}`
 
 Status
 
