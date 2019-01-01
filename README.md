@@ -1,17 +1,59 @@
-# YouTube Trending Map
+# YouTube Trending Map API
 
 [ ![Codeship Status for Thoar-tw/YouTube-TrendingMap-API](https://app.codeship.com/projects/42410180-eb20-0136-4343-567225019dfc/status?branch=master)](https://app.codeship.com/projects/319812)
+
 ## Overview
-We aim to create a web service that shows YouTube trending videos from various **countries**, **continents**, toward **global**.
+A web API that allows users to retrieve YouTube HOT & TOP videos from various **countries**, **continents**, toward **global**.
 
-By using the YouTube API and Mapbox frontend interactive map, the *YouTube Trending Map* enables users to *get* the **Hot videos list** based on **categories** and **countries**. Moreover, users can *get* the **Top videos** (default is Top 10) from a single country to the whole world. Therefore, Users can have a deeper glimpse at YouTube trending videos around the world with the *YouTube Trending Map*.
+## Routes
 
-## Installation
-### Clone
-Clone this repo to your local machine using `git clone https://github.com/Thoar-tw/YouTube-TrendingMap.git`
+### Root check
 
-### Setup
-Please type `bundle install` after you clone this repository.
+`GET /`
+
+Status:
+
+- 200: API server running (happy)
+
+### Get a list of YouTube hot videos in a country(with it's region code)
+
+`GET /hot_videos/{region_code}/{category_id}`
+
+Status
+
+- 200: video list returned (happy)
+- 404: invalid region_code or category_id (sad)
+- 500: problems getting the video list (bad)
+
+### Get a list of YouTube top viewed videos in the global world
+
+`GET /top_videos/global/{category_id}`
+
+Status
+
+- 200: video list returned (happy)
+- 404: invalid category_id (sad)
+- 500: problems getting the video list (bad)
+
+### Get a list of YouTube top viewed videos within a continent
+
+`GET /top_videos/continent/{continent_name}/{category_id}`
+
+Status
+
+- 200: video list returned (happy)
+- 404: invalid continent_name or category_id (sad)
+- 500: problems getting the video list (bad)
+
+### Get a list of YouTube top viewed videos in a country(with it's region code)
+
+`GET /top_videos/continent/{region_code}/{category_id}`
+
+Status
+
+- 200: video list returned (happy)
+- 404: invalid region_code or category_id (sad)
+- 500: problems getting the video list (bad)
 
 ## Acknowledgement
 This project is the term project of the Service Oriented Architecture (SOA) lecture in NTHU, lectured by professor [Soumya Ray](https://soumyaray.com/).
