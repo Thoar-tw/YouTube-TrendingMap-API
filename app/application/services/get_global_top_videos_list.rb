@@ -19,10 +19,10 @@ module YouTubeTrendingMap
       def get_from_api(input)
         global_top_videos_list =
           YouTubeTrendingMap::Mapper::GlobalTopVideosList
-          .new(App.config.GOOGLE_CLOUD_KEY)
+          .new(Api.config.GOOGLE_CLOUD_KEY)
           .get(input[:category_id], 10)
 
-        Success(global_top_videos_list)
+        Success(Value::Result.new(status: :ok, message: global_top_videos_list))
       rescue StandardError => error
         Failure(Value::Result.new(status: :not_found, message: error.to_s))
       end

@@ -13,7 +13,6 @@ module YouTubeTrendingMap
 
       def validate_input(input)
         puts 'inside validate_input'
-        puts input
         region_code = input[:region_code]
         category_id = input[:category_id]
 
@@ -22,12 +21,11 @@ module YouTubeTrendingMap
 
       def get_from_api(input)
         puts 'inside get_from_api'
-        puts input
         hot_videos_list = YouTubeTrendingMap::Mapper::HotVideosList
-                          .new(App.config.GOOGLE_CLOUD_KEY)
+                          .new(Api.config.GOOGLE_CLOUD_KEY)
                           .get(input[:region_code], input[:category_id], 10)
 
-        Success(hot_videos_list)
+        Success(Value::Result.new(status: :ok, message: hot_videos_list))
       rescue StandardError => error
         Failure(Value::Result.new(status: :not_found, message: error.to_s))
       end
