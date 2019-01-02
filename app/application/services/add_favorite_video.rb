@@ -37,7 +37,12 @@ module YouTubeTrendingMap
         end
       rescue StandardError => error
         puts error.backtrace.join("\n")
-        Failure('Having trouble accessing the database')
+        Failure(
+          Value::Result.new(
+            status: :internal_error,
+            message: 'Having trouble accessing the database'
+          )
+        )
       end
 
       def input_is_nil(input)

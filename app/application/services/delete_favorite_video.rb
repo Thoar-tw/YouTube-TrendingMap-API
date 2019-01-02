@@ -10,17 +10,24 @@ module YouTubeTrendingMap
 
       private
 
-      def delete_video(input)
-        puts 'inside delete_video'
-        result =
-          FavoriteVideosRepository::FavoriteVideos
+      def delete_video(input) # rubocop:disable Metrics/MethodLength
+        FavoriteVideosRepository::FavoriteVideos
           .delete_video(input[:origin_id])
 
-        Success(result)
+        Success(
+          Value::Result.new(
+            status: :ok,
+            message: 'Success delete the video from favorite'
+          )
+        )
       rescue StandardError => error
         puts error.backtrace.join("\n")
-        puts 'Having trouble accessing the database'
-        Failure('Having trouble accessing the database')
+        Failure(
+          Value::Result.new(
+            status: :internal_error,
+            message: 'Having trouble accessing the database'
+          )
+        )
       end
     end
   end
