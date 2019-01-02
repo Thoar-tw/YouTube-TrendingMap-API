@@ -11,11 +11,8 @@ module YouTubeTrendingMap
 
       property :origin_id
       property :title
-      property :description
       property :channel_title
       property :view_count
-      property :like_count
-      property :dislike_count
       property :embed_link
     end
   end
