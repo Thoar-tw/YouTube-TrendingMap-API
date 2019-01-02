@@ -144,6 +144,7 @@ module YouTubeTrendingMap
                 view_count: routing.params['view_count'].to_i,
                 embed_link: routing.params['embed_link']
               )
+
               if result.failure?
                 failed = Representer::HttpResponse.new(result.failure)
                 routing.halt failed.http_status_code, failed.to_json
@@ -151,8 +152,12 @@ module YouTubeTrendingMap
 
               http_response = Representer::HttpResponse.new(result.value!)
               response.status = http_response.http_status_code
+              Representer::FavoriteVideo.new(
+                result.value!.message
+              ).to_json
             end
           end
+
           routing.on 'delete' do
             # POST /favorite_videos/delete
             routing.post do
