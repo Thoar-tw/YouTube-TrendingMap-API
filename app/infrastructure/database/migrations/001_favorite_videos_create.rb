@@ -5,7 +5,7 @@ Sequel.migration do
     create_table(:favorite_videos) do
       primary_key :id
 
-      String      :origin_id, unique: true, null: false
+      String      :origin_id, unique: true
       String      :title, unique: true, null: false
       String      :channel_title
       Integer     :view_count
