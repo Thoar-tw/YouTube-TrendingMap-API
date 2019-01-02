@@ -152,9 +152,7 @@ module YouTubeTrendingMap
 
               http_response = Representer::HttpResponse.new(result.value!)
               response.status = http_response.http_status_code
-              Representer::FavoriteVideo.new(
-                result.value!.message
-              ).to_json
+              http_response.to_json
             end
           end
 
