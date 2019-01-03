@@ -117,9 +117,7 @@ module YouTubeTrendingMap
           routing.is do
             # GET /favorite_videos
             routing.get do
-              result = Services::ListFavoriteVideos.new.call(
-                list_request: Value::ListRequest.new(routing.params)
-              )
+              result = Services::ListFavoriteVideos.new.call
 
               if result.failure?
                 failed = Representer::HttpResponse.new(result.failure)
