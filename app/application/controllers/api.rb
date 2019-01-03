@@ -72,9 +72,7 @@ module YouTubeTrendingMap
             routing.on String, String do |continent_name, category_id|
               # POST /top_videos/continent/{continent_name}/{category_id}
               routing.post do
-                # downcase the input for continent name
-                continent_name = continent_name.downcase
-
+                continent_name = continent_name.gsub!('%20', ' ')
                 result = Services::GetContinentTopVideosList.new.call(
                   continent_name: continent_name, category_id: category_id
                 )

@@ -30,8 +30,9 @@ module YouTubeTrendingMap
 
       private
 
+      # rubocop:disable Metrics/MethodLength
       def get_lists_from_countries_in_(continent, category_id, max_results)
-        country_codes = 
+        country_codes =
           case continent
           when 'asia'
             %w[tw jp]
@@ -51,6 +52,7 @@ module YouTubeTrendingMap
 
         list
       end
+      # rubocop:enable Metrics/MethodLength
 
       def country_codes_in_(continent)
         country_codes = []
