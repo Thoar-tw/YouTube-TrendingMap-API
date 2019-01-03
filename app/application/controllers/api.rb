@@ -114,7 +114,7 @@ module YouTubeTrendingMap
         end
 
         routing.on 'favorite_videos' do # rubocop:disable Metrics/BlockLength
-          routing.is do
+          routing.is do # rubocop:disable Metrics/BlockLength
             # GET /favorite_videos
             routing.get do
               result = Services::ListFavoriteVideos.new.call
@@ -134,12 +134,9 @@ module YouTubeTrendingMap
 
             # POST /favorite_videos
             routing.post do
+              # Add video to favorite list
               result = Services::AddFavoriteVideo.new.call(
-                origin_id: routing.params['origin_id'],
-                title: routing.params['title'],
-                channel_title: routing.params['channel_title'],
-                view_count: routing.params['view_count'].to_i,
-                embed_link: routing.params['embed_link']
+                video_request: Value::VideoRequest.new(routing.params)
               )
 
               if result.failure?
@@ -154,8 +151,9 @@ module YouTubeTrendingMap
 
             # DELETE /favorite_videos/delete
             routing.delete do
+              # Delete video from favorite list
               result = Services::DeleteFavoriteVideo.new.call(
-                origin_id: routing.params['origin_id']
+                video_request: Value::VideoRequest.new(routing.params)
               )
 
               if result.failure?

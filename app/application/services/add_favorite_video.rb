@@ -12,9 +12,9 @@ module YouTubeTrendingMap
       private
 
       def validate_input(input) # rubocop:disable Metrics/MethodLength
-        if !input_is_nil(input)
-          input[:video_entity] = build_entity(input)
-          Success(input)
+        video_request = input[:video_request].call
+        if video_request.success?
+          Success(input.merge(video: video_request.value!))
         else
           Failure(
             Value::Result.new(
@@ -26,15 +26,14 @@ module YouTubeTrendingMap
       end
 
       def store_video(input) # rubocop:disable Metrics/MethodLength
-        if (video = input[:video_entity])
-          FavoriteVideosRepository::For.entity(video).find_or_create(video)
-          Success(
-            Value::Result.new(
-              status: :created,
-              message: 'Success add the video to favorite'
-            )
+        video = build_entity(input[:video])
+        FavoriteVideosRepository::For.entity(video).find_or_create(video)
+        Success(
+          Value::Result.new(
+            status: :created,
+            message: 'Success add the video to favorite'
           )
-        end
+        )
       rescue StandardError => error
         puts error.backtrace.join("\n")
         Failure(
@@ -45,19 +44,13 @@ module YouTubeTrendingMap
         )
       end
 
-      def input_is_nil(input)
-        input[:origin_id].nil? || input[:title].nil? ||
-          input[:channel_title].nil? || input[:view_count].nil? ||
-          input[:embed_link].nil?
-      end
-
       def build_entity(input)
         Entity::FavoriteVideo.new(
-          origin_id: input[:origin_id],
-          title: input[:title],
-          channel_title: input[:channel_title],
-          view_count: input[:view_count],
-          embed_link: input[:embed_link]
+          origin_id: input['origin_id'],
+          title: input['title'],
+          channel_title: input['channel_title'],
+          view_count: input['view_count'],
+          embed_link: input['embed_link']
         )
       end
     end
