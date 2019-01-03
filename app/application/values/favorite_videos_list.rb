@@ -6,6 +6,6 @@ require 'dry-struct'
 module YouTubeTrendingMap
   module Value
     # List of videos
-    FavoriteVideosList = Struct.new(:favorite_videos)
+    FavoriteVideosList = Struct.new(:videos)
   end
 end

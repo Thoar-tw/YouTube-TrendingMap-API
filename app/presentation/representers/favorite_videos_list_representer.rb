@@ -1,0 +1,15 @@
+# frozen_string_literal: true
+
+require 'roar/decorator'
+require 'roar/json'
+
+module YouTubeTrendingMap
+  module Representer
+    # Represents HotVideo information for API output
+    class FavoriteVideosList < Roar::Decorator
+      include Roar::JSON
+
+      collection :videos, extend: Representer::FavoriteVideo
+    end
+  end
+end
