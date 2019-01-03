@@ -15,7 +15,7 @@ module YouTubeTrendingMap
       def retrieve_videos # rubocop:disable Metrics/MethodLength
         FavoriteVideosRepository::For
           .klass(Entity::FavoriteVideo).all
-          .yield_self { |videos| Value::VideosList.new(videos) }
+          .yield_self { |videos| Value::FavoriteVideosList.new(videos) }
           .yield_self do |list|
             Success(Value::Result.new(status: :ok, message: list))
           end
