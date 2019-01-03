@@ -35,6 +35,7 @@ module YouTubeTrendingMap
           )
         )
       rescue StandardError => error
+        puts error
         puts error.backtrace.join("\n")
         Failure(
           Value::Result.new(
