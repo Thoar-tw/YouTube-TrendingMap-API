@@ -55,7 +55,7 @@ namespace :db do
 
   desc 'Wipe records from all tables'
   task wipe: :config do
-    require_relative  'spec/helpers/database_helper.rb'
+    require_relative 'spec/helpers/database_helper.rb'
     DatabaseHelper.setup_database_cleaner
     DatabaseHelper.wipe_database
   end
