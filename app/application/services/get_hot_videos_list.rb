@@ -27,6 +27,7 @@ module YouTubeTrendingMap
 
         Success(Value::Result.new(status: :ok, message: hot_videos_list))
       rescue StandardError => error
+        puts error.to_s
         Failure(Value::Result.new(status: :not_found, message: error.to_s))
       end
     end
