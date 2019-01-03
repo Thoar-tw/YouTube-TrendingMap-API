@@ -25,11 +25,11 @@ module YouTubeTrendingMap
       end
     end
 
-    configure :development, :test do
+    configure :development, :test, :app_test do
       ENV['DATABASE_URL'] = 'sqlite://' + config.DB_FILENAME
     end
 
-    configure :test do
+    configure :app_test do
       require_relative '../spec/helpers/vcr_helper.rb'
       VcrHelper.setup_vcr
       VcrHelper.configure_vcr_for_youtube(recording: :none)
