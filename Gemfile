@@ -12,7 +12,10 @@ gem 'roar'
 gem 'econfig', '~> 2.1'
 gem 'rack', '~> 2.0.6'
 gem 'puma', '~> 3.12'
-gem 'roda', '~> 3.13'
+gem 'rack-cache', '~> 1.8'
+gem 'redis', '~> 4.1'
+gem 'redis-rack-cache', '~> 2.0'
+gem 'roda', '~> 3.15'
 
 # Controllers and services
 gem 'dry-monads'

@@ -129,6 +129,8 @@ GEM
     public_suffix (3.0.3)
     puma (3.12.0)
     rack (2.0.6)
+    rack-cache (1.8.0)
+      rack (>= 0.4)
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
     rainbow (3.0.0)
@@ -136,6 +138,12 @@ GEM
     rb-fsevent (0.10.3)
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
+    redis (4.1.0)
+    redis-rack-cache (2.0.2)
+      rack-cache (>= 1.6, < 2)
+      redis-store (>= 1.2, < 2)
+    redis-store (1.6.0)
+      redis (>= 2.2, < 5)
     reek (5.2.0)
       codeclimate-engine-rb (~> 0.4.0)
       kwalify (~> 0.7.0)
@@ -150,7 +158,7 @@ GEM
       listen (~> 3.0)
     roar (1.1.0)
       representable (~> 3.0.0)
-    roda (3.14.0)
+    roda (3.15.0)
       rack
     rubocop (0.61.1)
       jaro_winkler (~> 1.5.1)
@@ -221,12 +229,15 @@ DEPENDENCIES
   pry (~> 0.11)
   puma (~> 3.12)
   rack (~> 2.0.6)
+  rack-cache (~> 1.8)
   rack-test
   rake
+  redis (~> 4.1)
+  redis-rack-cache (~> 2.0)
   reek
   rerun (~> 0.13)
   roar
-  roda (~> 3.13)
+  roda (~> 3.15)
   rubocop (~> 0.61)
   sequel
   simplecov (~> 0.16)
@@ -239,4 +250,4 @@ RUBY VERSION
    ruby 2.5.3p105
 
 BUNDLED WITH
-   1.17.2
+   1.17.3

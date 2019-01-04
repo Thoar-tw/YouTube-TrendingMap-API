@@ -7,6 +7,7 @@ module YouTubeTrendingMap
   class Api < Roda # rubocop:disable Metrics/ClassLength
     plugin :halt
     plugin :all_verbs
+    plugin :caching
 
     DEFAULT_CATEGORY = 0
     DEFAULT_MAX_RESULTS = 10
