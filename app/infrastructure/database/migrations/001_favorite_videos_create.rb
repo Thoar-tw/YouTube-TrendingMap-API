@@ -8,7 +8,7 @@ Sequel.migration do
       String      :origin_id, unique: true
       String      :title, unique: true, null: false
       String      :channel_title
-      Bignum     :view_count
+      Bignum      :view_count
       String      :embed_link
 
       DateTime    :create_at
