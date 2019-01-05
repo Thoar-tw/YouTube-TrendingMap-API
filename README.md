@@ -55,6 +55,29 @@ Status
 - 404: invalid region_code or category_id (sad)
 - 500: problems getting the video list (bad)
 
+
+### Add a video to your favoite list
+
+`GET /favorite_videos?{parameters}`
+where the parameters are `origin_id={}&title={}&channel_title={}&view_count={}&embed_link={}`, which are from AJAX calling when you click the LIKE icon.
+
+Status
+
+- 201: video stored (happy)
+- 404: invalid parameters (sad)
+- 500: problems storing the video (bad)
+
+### Delete a video from your favoite list
+
+`DELETE /favorite_videos?origin_id={}`
+where the `origin_id` is from the video on which you click the TRASH icon.
+
+Status
+
+- 201: video deleted (happy)
+- 404: invalid `origin_id` (sad)
+- 500: problems deleting the video (bad)
+
 ## Acknowledgement
 This project is the term project of the Service Oriented Architecture (SOA) lecture in NTHU, lectured by professor [Soumya Ray](https://soumyaray.com/).
 We thank for his excellent lectures, valuable feedback and helpful discussions.
