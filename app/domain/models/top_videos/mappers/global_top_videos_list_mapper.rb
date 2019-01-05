@@ -14,8 +14,8 @@ module YouTubeTrendingMap
       end
 
       def get(category_id, max_results)
-        videos_lists = get_lists_from_continents(category_id, max_results)
-        # videos_lists = get_lists_from_continents_concurrently(category_id, max_results)
+        # videos_lists = get_lists_from_continents(category_id, max_results)
+        videos_lists = get_lists_from_continents_concurrently(category_id, max_results)
         build_entity(aggregate(videos_lists))
       end
 
