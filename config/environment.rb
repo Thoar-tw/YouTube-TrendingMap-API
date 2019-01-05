@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'rack/cache'
+require 'redis-rack-cache'
 require 'roda'
 require 'econfig'
 require 'yaml'
