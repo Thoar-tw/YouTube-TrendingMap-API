@@ -17,3 +17,6 @@ coverage/
 
 # Other ignores
 .bundle/
+
+# Local Cache
+_cache/
