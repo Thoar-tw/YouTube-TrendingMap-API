@@ -54,6 +54,8 @@ module YouTubeTrendingMap
             routing.on String do |category_id|
               # POST /top_videos/global/{category_id}
               routing.post do
+                response.cache_control public: true, max_age: 600
+
                 result = Services::GetGlobalTopVideosList.new.call(
                   category_id: category_id
                 )
