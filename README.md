@@ -58,8 +58,8 @@ Status
 
 ### Add a video to your favoite list
 
-`GET /favorite_videos?{parameters}`
-where the parameters are `origin_id={}&title={}&channel_title={}&view_count={}&embed_link={}`, which are from AJAX calling when you click the LIKE icon.
+`POST /favorite_videos?PARAMS`
+where the `PARAMS` consists of `origin_id={}&title={}&channel_title={}&view_count={}&embed_link={}`, which are from AJAX calling when you click the LIKE icon.
 
 Status
 
@@ -77,6 +77,15 @@ Status
 - 201: video deleted (happy)
 - 404: invalid `origin_id` (sad)
 - 500: problems deleting the video (bad)
+
+### Get your favoite list (if you have added any videos)
+
+`GET /favorite_videos`
+
+Status
+
+- 200: video list returned (happy)
+- 500: problems getting the video list (bad)
 
 ## Acknowledgement
 This project is the term project of the Service Oriented Architecture (SOA) lecture in NTHU, lectured by professor [Soumya Ray](https://soumyaray.com/).
