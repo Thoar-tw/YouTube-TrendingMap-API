@@ -59,6 +59,7 @@ Status
 ### Add a video to your favoite list
 
 `POST /favorite_videos?PARAMS`
+
 where the `PARAMS` consists of `origin_id={}&title={}&channel_title={}&view_count={}&embed_link={}`, which are from AJAX calling when you click the LIKE icon.
 
 Status
@@ -70,6 +71,7 @@ Status
 ### Delete a video from your favoite list
 
 `DELETE /favorite_videos?origin_id={}`
+
 where the `origin_id` is from the video on which you click the TRASH icon.
 
 Status
