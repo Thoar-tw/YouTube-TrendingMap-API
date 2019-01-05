@@ -35,11 +35,15 @@ module YouTubeTrendingMap
         country_codes =
           case continent
           when 'asia'
-            %w[tw jp]
+            %w[tw jp kr sg in]
           when 'europe'
-            %w[fr se]
+            %w[fr de se es]
           when 'north america'
-            %w[us ca]
+            %w[us ca mx]
+          when 'south america'
+            %w[py ar br]
+          when 'africa'
+            %w[za eg ng]
           end
 
         # country_codes = country_codes_in_(continent)

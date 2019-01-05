@@ -28,7 +28,7 @@ module YouTubeTrendingMap
       private
 
       def get_lists_from_continents(category_id, max_results)
-        continents = ['asia']
+        continents = ['asia', 'north america', 'europe']
         # continents = CONTINENT_COUNTRY_CODES.keys
         list = []
         continents.each do |continent|
