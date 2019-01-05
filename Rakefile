@@ -54,7 +54,7 @@ namespace :cache do
       puts list
     end
 
-    task :production => :config do
+    task production: :config do
       puts 'Finding production cache'
       keys = YouTubeTrendingMap::Cache::Client.new(@api.config).keys
       puts 'No keys found' if keys.none?

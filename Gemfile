@@ -44,6 +44,10 @@ end
 # Networking
 gem 'http', '~> 4.0'
 
+# Queues
+gem 'aws-sdk-sqs', '~> 1'
+gem 'shoryuken', '~> 4'
+
 # TESTING
 group :test do
   gem 'headless', '~> 2.3'
