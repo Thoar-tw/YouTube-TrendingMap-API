@@ -12,9 +12,9 @@ module YouTubeTrendingMap
       private
 
       def validate_input(input) # rubocop:disable Metrics/MethodLength
-        video_request = input[:video_request].call
-        if video_request.success?
-          Success(input.merge(video: video_request.value!))
+        videos_request = input[:videos_request].call
+        if videos_request.success?
+          Success(input.merge(videos: videos_request.value!))
         else
           Failure(
             Value::Result.new(
@@ -26,7 +26,7 @@ module YouTubeTrendingMap
       end
 
       def delete_video(input) # rubocop:disable Metrics/MethodLength
-        video = input[:video]
+        video = input[:videos]
         FavoriteVideosRepository::FavoriteVideos
           .delete_video(video['origin_id'])
 

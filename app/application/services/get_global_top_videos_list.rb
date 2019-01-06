@@ -6,15 +6,9 @@ module YouTubeTrendingMap
     class GetGlobalTopVideosList
       include Dry::Transaction
 
-      step :validate_input
       step :get_from_api
 
       private
-
-      def validate_input(input)
-        category_id = input[:category_id]
-        Success(category_id: category_id)
-      end
 
       def get_from_api(input)
         global_top_videos_list =
