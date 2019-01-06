@@ -43,7 +43,7 @@ namespace :queues do
   task :config do
     require 'aws-sdk-sqs'
     require_relative 'config/environment.rb' # load config info
-    @api = CodePraise::Api
+    @api = YouTubeTrendingMap::Api
 
     @sqs = Aws::SQS::Client.new(
       access_key_id: @api.config.AWS_ACCESS_KEY_ID,
