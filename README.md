@@ -7,7 +7,7 @@ A web API that allows users to retrieve YouTube HOT & TOP videos from various **
 
 ## Routes
 
-### Root check
+> ### _Root check_
 
 `GET /`
 
@@ -57,7 +57,7 @@ Status
 - 404: invalid region_code or category_id (sad)
 - 500: problems getting the video list (bad)
 
-> ### _Favoite videos_
+> ### _Favoite Videos_
 ### Add a video to your favoite list
 
 `POST /favorite_videos?PARAMS`
