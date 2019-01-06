@@ -133,11 +133,11 @@ module YouTubeTrendingMap
               ).to_json
             end
 
-            # POST /favorite_videos
+            # POST /favorite_videos?videos=
             routing.post do
               # Add video to favorite list
               result = Services::AddFavoriteVideo.new.call(
-                video_request: Value::VideoRequest.new(routing.params)
+                videos_request: Value::VideosRequest.new(routing.params)
               )
 
               if result.failure?
@@ -150,11 +150,11 @@ module YouTubeTrendingMap
               http_response.to_json
             end
 
-            # DELETE /favorite_videos/delete
+            # DELETE /favorite_videos?videos=
             routing.delete do
               # Delete video from favorite list
               result = Services::DeleteFavoriteVideo.new.call(
-                video_request: Value::VideoRequest.new(routing.params)
+                videos_request: Value::VideosRequest.new(routing.params)
               )
 
               if result.failure?
@@ -167,45 +167,25 @@ module YouTubeTrendingMap
               http_response.to_json
             end
           end
-          # routing.on 'add' do
-          #   # POST /favorite_videos/add
-          #   routing.post do
-          #     result = Services::AddFavoriteVideo.new.call(
-          #       origin_id: routing.params['origin_id'],
-          #       title: routing.params['title'],
-          #       channel_title: routing.params['channel_title'],
-          #       view_count: routing.params['view_count'].to_i,
-          #       embed_link: routing.params['embed_link']
-          #     )
 
-          #     if result.failure?
-          #       failed = Representer::HttpResponse.new(result.failure)
-          #       routing.halt failed.http_status_code, failed.to_json
-          #     end
+          routing.on 'all' do
+            # POST /favorite_videos/all?videos=
+            routing.post do
+              # Add videos to favorite list
+              result = Services::AddFavoriteVideosByList.new.call(
+                videos_request: Value::VideosRequest.new(routing.params)
+              )
 
-          #     http_response = Representer::HttpResponse.new(result.value!)
-          #     response.status = http_response.http_status_code
-          #     http_response.to_json
-          #   end
-          # end
+              if result.failure?
+                failed = Representer::HttpResponse.new(result.failure)
+                routing.halt failed.http_status_code, failed.to_json
+              end
 
-          # routing.on 'delete' do
-          #   # POST /favorite_videos/delete
-          #   routing.post do
-          #     result = Services::DeleteFavoriteVideo.new.call(
-          #       origin_id: routing.params['origin_id']
-          #     )
-
-          #     if result.failure?
-          #       failed = Representer::HttpResponse.new(result.failure)
-          #       routing.halt failed.http_status_code, failed.to_json
-          #     end
-
-          #     http_response = Representer::HttpResponse.new(result.value!)
-          #     response.status = http_response.http_status_code
-          #     http_response.to_json
-          #   end
-          # end
+              http_response = Representer::HttpResponse.new(result.value!)
+              response.status = http_response.http_status_code
+              http_response.to_json
+            end
+          end
         end
       end
     end

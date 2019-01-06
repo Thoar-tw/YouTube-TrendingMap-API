@@ -6,17 +6,9 @@ module YouTubeTrendingMap
     class GetContinentTopVideosList
       include Dry::Transaction
 
-      step :validate_input
       step :get_from_api
 
       private
-
-      def validate_input(input)
-        continent_name = input[:continent_name]
-        category_id = input[:category_id]
-
-        Success(continent_name: continent_name, category_id: category_id)
-      end
 
       def get_from_api(input)
         continent_top_videos_list =
