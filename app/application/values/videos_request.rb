@@ -30,7 +30,7 @@ module YouTubeTrendingMap
 
       # Use in tests to create a ListRequest object from a list
       def self.to_request(videos)
-        VideosRequest.new('video' => to_encoded(videos))
+        VideosRequest.new('videos' => to_encoded(videos))
       end
     end
   end
