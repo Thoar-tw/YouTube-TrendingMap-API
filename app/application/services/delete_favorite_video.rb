@@ -12,6 +12,7 @@ module YouTubeTrendingMap
       private
 
       def validate_input(input) # rubocop:disable Metrics/MethodLength
+        puts input[:videos_request]
         videos_request = input[:videos_request].call
         puts videos_request
         if videos_request.success?

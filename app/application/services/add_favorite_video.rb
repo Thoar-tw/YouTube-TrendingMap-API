@@ -28,7 +28,6 @@ module YouTubeTrendingMap
         FavoriteVideosRepository::For
           .entity(video).find_or_create(video)
           .yield_self do |result|
-            puts result
             Success(Value::Result.new(status: :created, message: result))
           end
       rescue StandardError => error
