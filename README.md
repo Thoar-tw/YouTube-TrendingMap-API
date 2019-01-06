@@ -15,6 +15,7 @@ Status:
 
 - 200: API server running (happy)
 
+> ### _Hot Videos_
 ### Get a list of YouTube hot videos in a country(with it's region code)
 
 `POST /hot_videos/{region_code}/{category_id}`
@@ -25,6 +26,7 @@ Status
 - 404: invalid region_code or category_id (sad)
 - 500: problems getting the video list (bad)
 
+> ### _Top Videos_
 ### Get a list of YouTube top viewed videos in the global world
 
 `POST /top_videos/global/{category_id}`
@@ -55,7 +57,7 @@ Status
 - 404: invalid region_code or category_id (sad)
 - 500: problems getting the video list (bad)
 
-
+> ### _Favoite videos_
 ### Add a video to your favoite list
 
 `POST /favorite_videos?PARAMS`
